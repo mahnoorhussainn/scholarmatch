@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Login - ScholarMatch</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Sign in to your ScholarMatch account to access scholarship opportunities" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.field-group {
+				margin-bottom: 1rem;
+			}
+			.error-message {
+				color: #ff6b6b;
+				font-size: 0.9em;
+				margin-top: 0.25rem;
+				display: none;
+			}
+			.success-message {
+				color: #51cf66;
+				font-size: 0.9em;
+				margin-top: 0.25rem;
+			}
+			.password-toggle {
+				position: absolute;
+				right: 12px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: none;
+				border: none;
+				cursor: pointer;
+				color: #666;
+				font-size: 1.2rem;
+				padding: 0;
+				width: 24px;
+				height: 24px;
+			}
+			.password-toggle:hover {
+				color: #333;
+			}
+			.login-options {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1.5rem;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+			.remember-me {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.remember-me input[type="checkbox"] {
+				width: auto;
+				margin: 0;
+			}
+			.forgot-password {
+				color: #4CAF50;
+				text-decoration: none;
+				font-size: 0.9rem;
+			}
+			.forgot-password:hover {
+				text-decoration: underline;
+			}
+			.loading-spinner {
+				display: none;
+				width: 20px;
+				height: 20px;
+				border: 2px solid #ffffff;
+				border-top: 2px solid transparent;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+				margin-right: 0.5rem;
+			}
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+		</style>
+    </head>
+    <body class="is-preload">
+        <div id="wrapper"> 
+            <header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>ScholarMatch</strong> <span>Scholarship Management System</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="landing.html">Landing</a></li>
+							<li><a href="generic.html">Generic</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="signup.html" class="button primary fit">Sign Up</a></li>
+							<li><a href="login.html" class="button fit">Login</a></li>
+						</ul>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<header class="major">
+								<h1>Welcome Back</h1>
+							</header>
+							<div class="content">
+								<p>Sign in to your account and continue your scholarship journey<br />
+								Access your personalized dashboard and opportunities</p>
+							</div>
+						</div>
+					</section>
+
+                    <div id="main">
+
+						<!-- Login Form -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>🔐 Sign In to ScholarMatch</h1>
+										<p>Access your account and continue your scholarship journey</p>
+									</header>
+									
+									<form method="post" action="#" id="login-form">
+										<!-- Login Information Section -->
+										<div class="box">
+											<h3>🔐 Login Information</h3>
+											<div class="row gtr-uniform">
+												<div class="col-12 field-group">
+													<input type="email" name="email" id="email" value="" placeholder="Email Address" required aria-describedby="email-error" />
+													<div class="error-message" id="email-error"></div>
+												</div>
+												<div class="col-12 field-group" style="position: relative;">
+													<input type="password" name="password" id="password" value="" placeholder="Password" required aria-describedby="password-error" />
+													<button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+														👁️
+													</button>
+													<div class="error-message" id="password-error"></div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Login Options -->
+										<div class="box">
+											<div class="login-options">
+												<div class="remember-me">
+													<input type="checkbox" id="remember-me" name="remember-me">
+													<label for="remember-me">Remember me</label>
+												</div>
+												<a href="#" class="forgot-password" id="forgot-password">Forgot Password?</a>
+											</div>
+										</div>
+
+										<!-- Submit Button -->
+										<div class="col-12">
+											<ul class="actions">
+												<li><button type="submit" class="primary" id="login-button">
+													<div class="loading-spinner" id="loading-spinner"></div>
+													<span id="button-text">Sign In</span>
+												</button></li>
+												<li><input type="reset" value="Clear Form" /></li>
+											</ul>
+										</div>
+									</form>
+
+									<!-- Signup Link -->
+									<div class="box">
+										<p>Don't have an account? <a href="signup.html">Create one here</a></p>
+									</div>
+                                </div>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; ScholarMatch</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Enhanced Login Form Script -->
+			<script>
+				// Login Manager Class
+				class LoginManager {
+					constructor() {
+						this.isLoading = false;
+						this.init();
+					}
+
+					init() {
+						this.setupEventListeners();
+						this.loadRememberedCredentials();
+					}
+
+					setupEventListeners() {
+						// Form submission
+						document.getElementById('login-form').addEventListener('submit', (e) => this.handleLogin(e));
+						
+						// Password visibility toggle
+						document.getElementById('password-toggle').addEventListener('click', () => this.togglePasswordVisibility());
+						
+						// Real-time validation
+						document.getElementById('email').addEventListener('blur', (e) => this.validateEmail(e.target.value));
+						document.getElementById('password').addEventListener('input', (e) => this.validatePassword(e.target.value));
+						
+						// Forgot password
+						document.getElementById('forgot-password').addEventListener('click', (e) => this.handleForgotPassword(e));
+						
+						// Remember me functionality
+						document.getElementById('remember-me').addEventListener('change', (e) => this.handleRememberMe(e.target.checked));
+						
+						// Auto-focus on email field
+						document.getElementById('email').focus();
+					}
+
+					togglePasswordVisibility() {
+						const passwordField = document.getElementById('password');
+						const toggleButton = document.getElementById('password-toggle');
+						
+						if (passwordField.type === 'password') {
+							passwordField.type = 'text';
+							toggleButton.textContent = '🙈';
+							toggleButton.setAttribute('aria-label', 'Hide password');
+						} else {
+							passwordField.type = 'password';
+							toggleButton.textContent = '👁️';
+							toggleButton.setAttribute('aria-label', 'Show password');
+						}
+					}
+
+					validateEmail(email) {
+						const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+						const emailField = document.getElementById('email');
+						
+						if (email && !emailRegex.test(email)) {
+							this.showError('email', 'Please enter a valid email address');
+							emailField.style.borderColor = '#ff6b6b';
+							return false;
+						} else if (email) {
+							this.hideError('email');
+							emailField.style.borderColor = '#51cf66';
+							return true;
+						}
+						return true;
+					}
+
+					validatePassword(password) {
+						const passwordField = document.getElementById('password');
+						
+						if (password && password.length < 6) {
+							this.showError('password', 'Password must be at least 6 characters long');
+							passwordField.style.borderColor = '#ff6b6b';
+							return false;
+						} else if (password) {
+							this.hideError('password');
+							passwordField.style.borderColor = '#51cf66';
+							return true;
+						}
+						return true;
+					}
+
+					showError(fieldId, message) {
+						const errorElement = document.getElementById(`${fieldId}-error`);
+						if (errorElement) {
+							errorElement.textContent = message;
+							errorElement.style.display = 'block';
+						}
+					}
+
+					hideError(fieldId) {
+						const errorElement = document.getElementById(`${fieldId}-error`);
+						if (errorElement) {
+							errorElement.style.display = 'none';
+						}
+					}
+
+					async handleLogin(e) {
+						e.preventDefault();
+						
+						if (this.isLoading) return;
+						
+						const email = document.getElementById('email').value.trim();
+						const password = document.getElementById('password').value;
+						const rememberMe = document.getElementById('remember-me').checked;
+						
+						// Validate form
+						if (!this.validateEmail(email) || !this.validatePassword(password)) {
+							return;
+						}
+						
+						if (!email || !password) {
+							this.showError('email', 'Please fill in all required fields');
+							return;
+						}
+						
+						// Show loading state
+						this.setLoadingState(true);
+						
+						try {
+							// Simulate API call (replace with actual API call)
+							await this.simulateLogin(email, password);
+							
+							// Handle remember me
+							if (rememberMe) {
+								this.saveCredentials(email);
+							} else {
+								this.clearCredentials();
+							}
+							
+							// Success
+							alert('Login successful! Welcome back to ScholarMatch!');
+							
+							// Redirect after a short delay
+							setTimeout(() => {
+								window.location.href = 'index.html'; // Replace with actual dashboard URL
+							}, 1500);
+							
+						} catch (error) {
+							this.showError('email', error.message || 'Login failed. Please check your credentials.');
+						} finally {
+							this.setLoadingState(false);
+						}
+					}
+
+					async simulateLogin(email, password) {
+						// Simulate network delay
+						await new Promise(resolve => setTimeout(resolve, 2000));
+						
+						// Simulate different login scenarios
+						if (email === 'demo@scholarmatch.com' && password === 'demo123') {
+							return { success: true, user: { email, name: 'Demo User' } };
+						} else if (email === 'admin@scholarmatch.com' && password === 'admin123') {
+							return { success: true, user: { email, name: 'Admin User' } };
+						} else {
+							throw new Error('Invalid email or password');
+						}
+					}
+
+					setLoadingState(loading) {
+						this.isLoading = loading;
+						const button = document.getElementById('login-button');
+						const spinner = document.getElementById('loading-spinner');
+						const buttonText = document.getElementById('button-text');
+						
+						if (loading) {
+							button.disabled = true;
+							spinner.style.display = 'inline-block';
+							buttonText.textContent = 'Signing In...';
+						} else {
+							button.disabled = false;
+							spinner.style.display = 'none';
+							buttonText.textContent = 'Sign In';
+						}
+					}
+
+					handleForgotPassword(e) {
+						e.preventDefault();
+						
+						const email = document.getElementById('email').value.trim();
+						
+						if (!email) {
+							alert('Please enter your email address first');
+							document.getElementById('email').focus();
+							return;
+						}
+						
+						// Simulate forgot password request
+						alert(`Password reset instructions have been sent to ${email}`);
+						
+						// In a real application, you would make an API call here
+						console.log('Password reset requested for:', email);
+					}
+
+					handleRememberMe(checked) {
+						if (checked) {
+							const email = document.getElementById('email').value.trim();
+							if (email) {
+								this.saveCredentials(email);
+							}
+						} else {
+							this.clearCredentials();
+						}
+					}
+
+					saveCredentials(email) {
+						localStorage.setItem('scholarmatch_remembered_email', email);
+					}
+
+					clearCredentials() {
+						localStorage.removeItem('scholarmatch_remembered_email');
+					}
+
+					loadRememberedCredentials() {
+						const rememberedEmail = localStorage.getItem('scholarmatch_remembered_email');
+						if (rememberedEmail) {
+							document.getElementById('email').value = rememberedEmail;
+							document.getElementById('remember-me').checked = true;
+							document.getElementById('password').focus();
+						}
+					}
+				}
+
+				// Initialize login manager when DOM is loaded
+				document.addEventListener('DOMContentLoaded', () => {
+					new LoginManager();
+				});
+			</script>
+
+        
+    </body>
+
+</html>

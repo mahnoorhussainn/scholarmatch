@@ -1,0 +1,706 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>SignUp - ScholarMatch</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Create your ScholarMatch account to find scholarship opportunities" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.form-step {
+				display: none;
+			}
+			.form-step.active {
+				display: block;
+			}
+			.progress-bar {
+				width: 100%;
+				height: 8px;
+				background-color: #e0e0e0;
+				border-radius: 4px;
+				margin-bottom: 2rem;
+				overflow: hidden;
+			}
+			.progress-fill {
+				height: 100%;
+				background: linear-gradient(45deg, #4CAF50, #45a049);
+				width: 0%;
+				transition: width 0.3s ease;
+			}
+			.step-navigation {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 2rem;
+			}
+			.field-group {
+				margin-bottom: 1rem;
+			}
+			.error-message {
+				color: #ff6b6b;
+				font-size: 0.9em;
+				margin-top: 0.25rem;
+				display: none;
+			}
+			.success-message {
+				color: #51cf66;
+				font-size: 0.9em;
+				margin-top: 0.25rem;
+			}
+			.password-strength {
+				margin-top: 0.5rem;
+				font-size: 0.8em;
+			}
+			.strength-weak { color: #ff6b6b; }
+			.strength-medium { color: #ffa726; }
+			.strength-strong { color: #51cf66; }
+			.password-toggle {
+				position: absolute;
+				right: 12px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: none;
+				border: none;
+				cursor: pointer;
+				color: #666;
+				font-size: 1.2rem;
+				padding: 0;
+				width: 24px;
+				height: 24px;
+			}
+			.password-toggle:hover {
+				color: #333;
+			}
+		</style>
+    </head>
+    <body class="is-preload">
+        <div id="wrapper"> 
+            <header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>ScholarMatch</strong> <span>Scholarship Management System</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="landing.html">Landing</a></li>
+							<li><a href="generic.html">Generic</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="signup.html" class="button primary fit">Sign Up</a></li>
+							<li><a href="login.html" class="button fit">Login</a></li>
+						</ul>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<header class="major">
+								<h1>Join ScholarMatch</h1>
+							</header>
+							<div class="content">
+								<p>Create your account and start your scholarship journey<br />
+								Find opportunities that match your academic goals</p>
+							</div>
+						</div>
+					</section>
+
+                    <div id="main">
+
+						<!-- Signup Form -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>🪪 Create Your ScholarMatch Account</h1>
+										<p>Join thousands of students finding their perfect scholarship opportunities</p>
+									</header>
+									
+									<!-- Progress Bar -->
+									<div class="progress-bar">
+										<div class="progress-fill" id="progress-fill"></div>
+									</div>
+									
+									<form method="post" action="#" id="signup-form">
+										<!-- Step 1: Basic Information -->
+										<div class="form-step active" id="step-1">
+										<div class="box">
+											<h3>🪪 Basic Information</h3>
+											<div class="row gtr-uniform">
+													<div class="col-12 field-group">
+														<input type="text" name="full-name" id="full-name" value="" placeholder="Full Name" required aria-describedby="full-name-error" />
+														<div class="error-message" id="full-name-error"></div>
+													</div>
+													<div class="col-12 field-group">
+														<input type="email" name="email" id="email" value="" placeholder="Email Address" required aria-describedby="email-error" />
+														<div class="error-message" id="email-error"></div>
+												</div>
+													<div class="col-6 col-12-xsmall field-group" style="position: relative;">
+														<input type="password" name="password" id="password" value="" placeholder="Password" required aria-describedby="password-error password-strength" />
+														<button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+															👁️
+														</button>
+														<div class="error-message" id="password-error"></div>
+														<div class="password-strength" id="password-strength"></div>
+												</div>
+													<div class="col-6 col-12-xsmall field-group" style="position: relative;">
+														<input type="password" name="confirm-password" id="confirm-password" value="" placeholder="Confirm Password" required aria-describedby="confirm-password-error" />
+														<button type="button" class="password-toggle" id="confirm-password-toggle" aria-label="Toggle confirm password visibility">
+															👁️
+														</button>
+														<div class="error-message" id="confirm-password-error"></div>
+												</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Step 2: Academic Information -->
+										<div class="form-step" id="step-2">
+										<div class="box">
+											<h3>🎓 Academic Information</h3>
+											<div class="row gtr-uniform">
+													<div class="col-12 field-group">
+														<select name="program-level" id="program-level" required aria-describedby="program-level-error">
+														<option value="">- Select Program Level -</option>
+														<option value="bachelors">Bachelor's Degree</option>
+														<option value="masters">Master's Degree</option>
+														<option value="phd">PhD/Doctorate</option>
+														<option value="diploma">Diploma/Certificate</option>
+													</select>
+														<div class="error-message" id="program-level-error"></div>
+												</div>
+													<div class="col-12 field-group">
+														<select name="field-of-study" id="field-of-study" required aria-describedby="field-of-study-error">
+														<option value="">- Select Field of Study -</option>
+														<option value="computer-science">Computer Science</option>
+														<option value="business-administration">Business Administration</option>
+														<option value="engineering">Engineering</option>
+														<option value="medicine">Medicine</option>
+														<option value="law">Law</option>
+														<option value="arts">Arts & Humanities</option>
+														<option value="science">Natural Sciences</option>
+														<option value="social-sciences">Social Sciences</option>
+														<option value="education">Education</option>
+														<option value="architecture">Architecture</option>
+														<option value="agriculture">Agriculture</option>
+														<option value="psychology">Psychology</option>
+														<option value="economics">Economics</option>
+														<option value="finance">Finance</option>
+														<option value="marketing">Marketing</option>
+														<option value="international-relations">International Relations</option>
+														<option value="environmental-science">Environmental Science</option>
+														<option value="public-health">Public Health</option>
+														<option value="journalism">Journalism</option>
+														<option value="design">Design</option>
+														<option value="music">Music</option>
+														<option value="sports-science">Sports Science</option>
+														<option value="tourism">Tourism & Hospitality</option>
+														<option value="aviation">Aviation</option>
+														<option value="marine-science">Marine Science</option>
+														<option value="other">Other</option>
+													</select>
+														<div class="error-message" id="field-of-study-error"></div>
+													</div>
+													<div class="col-6 col-12-xsmall field-group">
+														<input type="text" name="cgpa" id="cgpa" value="" placeholder="Current CGPA (e.g. 3.5/4.0)" aria-describedby="cgpa-error" />
+														<div class="error-message" id="cgpa-error"></div>
+													</div>
+													<div class="col-6 col-12-xsmall field-group">
+														<input type="text" name="grades" id="grades" value="" placeholder="Or Grades (e.g. 85%)" aria-describedby="grades-error" />
+														<div class="error-message" id="grades-error"></div>
+													</div>
+													<div class="col-12 field-group">
+														<select name="country" id="country" required aria-describedby="country-error">
+															<option value="">- Select Country of Residence/Citizenship -</option>
+														</select>
+														<div class="error-message" id="country-error"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Step 3: Study Preferences -->
+										<div class="form-step" id="step-3">
+											<div class="box">
+												<h3>🌍 Study Preferences</h3>
+												<div class="row gtr-uniform">
+													<div class="col-12 field-group">
+														<select name="preferred-country" id="preferred-country" required aria-describedby="preferred-country-error">
+															<option value="">- Select Preferred Country to Study -</option>
+														</select>
+														<div class="error-message" id="preferred-country-error"></div>
+													</div>
+													<div class="col-12 field-group">
+														<select name="preferred-program-level" id="preferred-program-level" required aria-describedby="preferred-program-level-error">
+															<option value="">- Select Preferred Program Level -</option>
+															<option value="bachelors">Bachelor's Degree</option>
+															<option value="masters">Master's Degree</option>
+															<option value="phd">PhD/Doctorate</option>
+															<option value="diploma">Diploma/Certificate</option>
+															<option value="postgraduate-diploma">Postgraduate Diploma</option>
+															<option value="exchange-program">Exchange Program</option>
+															<option value="summer-school">Summer School</option>
+															<option value="research-fellowship">Research Fellowship</option>
+														</select>
+														<div class="error-message" id="preferred-program-level-error"></div>
+													</div>
+													<div class="col-12 field-group">
+													<label for="budget-range">Budget Range (Optional)</label>
+														<select name="budget-range" id="budget-range" aria-describedby="budget-range-error">
+														<option value="">- Select Budget Range -</option>
+														<option value="under-10000">Under $10,000</option>
+														<option value="10000-25000">$10,000 - $25,000</option>
+														<option value="25000-50000">$25,000 - $50,000</option>
+														<option value="50000-100000">$50,000 - $100,000</option>
+														<option value="over-100000">Over $100,000</option>
+														<option value="full-scholarship">Full Scholarship Required</option>
+														<option value="partial-scholarship">Partial Scholarship Acceptable</option>
+														<option value="no-budget-limit">No Budget Limit</option>
+													</select>
+														<div class="error-message" id="budget-range-error"></div>
+												</div>
+													<div class="col-12 field-group">
+													<label for="study-duration">Preferred Study Duration</label>
+														<select name="study-duration" id="study-duration" aria-describedby="study-duration-error">
+														<option value="">- Select Study Duration -</option>
+														<option value="1-year">1 Year</option>
+														<option value="2-years">2 Years</option>
+														<option value="3-years">3 Years</option>
+														<option value="4-years">4 Years</option>
+														<option value="5-years">5+ Years</option>
+														<option value="flexible">Flexible</option>
+													</select>
+														<div class="error-message" id="study-duration-error"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Step 4: Terms and Final -->
+										<div class="form-step" id="step-4">
+										<div class="box">
+												<h3>📋 Terms and Conditions</h3>
+												<div class="row gtr-uniform">
+													<div class="col-12 field-group">
+														<input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+												<label for="terms">I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a></label>
+														<div class="error-message" id="terms-error"></div>
+											</div>
+													<div class="col-12 field-group">
+												<input type="checkbox" id="newsletter" name="newsletter">
+												<label for="newsletter">Subscribe to scholarship updates and notifications</label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Navigation Buttons -->
+										<div class="step-navigation">
+											<button type="button" id="prev-btn" class="button" style="display: none;">Previous</button>
+											<button type="button" id="next-btn" class="button primary">Next</button>
+											<button type="submit" id="submit-btn" class="button primary" style="display: none;">Create Account</button>
+										</div>
+									</form>
+
+									<!-- Login Link -->
+									<div class="box">
+										<p>Already have an account? <a href="login.html">Sign in here</a></p>
+									</div>
+                                </div>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; ScholarMatch</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Enhanced Form Validation Script -->
+			<script>
+				// Configuration
+				const CONFIG = {
+					totalSteps: 4,
+					countries: [
+						{value: 'afghanistan', label: 'Afghanistan'},
+						{value: 'albania', label: 'Albania'},
+						{value: 'algeria', label: 'Algeria'},
+						{value: 'argentina', label: 'Argentina'},
+						{value: 'australia', label: 'Australia'},
+						{value: 'austria', label: 'Austria'},
+						{value: 'bangladesh', label: 'Bangladesh'},
+						{value: 'belgium', label: 'Belgium'},
+						{value: 'brazil', label: 'Brazil'},
+						{value: 'canada', label: 'Canada'},
+						{value: 'china', label: 'China'},
+						{value: 'denmark', label: 'Denmark'},
+						{value: 'egypt', label: 'Egypt'},
+						{value: 'finland', label: 'Finland'},
+						{value: 'france', label: 'France'},
+						{value: 'germany', label: 'Germany'},
+						{value: 'india', label: 'India'},
+						{value: 'indonesia', label: 'Indonesia'},
+						{value: 'iran', label: 'Iran'},
+						{value: 'italy', label: 'Italy'},
+						{value: 'japan', label: 'Japan'},
+						{value: 'kenya', label: 'Kenya'},
+						{value: 'malaysia', label: 'Malaysia'},
+						{value: 'mexico', label: 'Mexico'},
+						{value: 'netherlands', label: 'Netherlands'},
+						{value: 'nigeria', label: 'Nigeria'},
+						{value: 'norway', label: 'Norway'},
+						{value: 'pakistan', label: 'Pakistan'},
+						{value: 'philippines', label: 'Philippines'},
+						{value: 'poland', label: 'Poland'},
+						{value: 'russia', label: 'Russia'},
+						{value: 'saudi-arabia', label: 'Saudi Arabia'},
+						{value: 'singapore', label: 'Singapore'},
+						{value: 'south-africa', label: 'South Africa'},
+						{value: 'south-korea', label: 'South Korea'},
+						{value: 'spain', label: 'Spain'},
+						{value: 'sweden', label: 'Sweden'},
+						{value: 'switzerland', label: 'Switzerland'},
+						{value: 'thailand', label: 'Thailand'},
+						{value: 'turkey', label: 'Turkey'},
+						{value: 'uk', label: 'United Kingdom'},
+						{value: 'usa', label: 'United States'},
+						{value: 'vietnam', label: 'Vietnam'},
+						{value: 'other', label: 'Other'}
+					]
+				};
+
+				// Form Manager Class
+				class FormManager {
+					constructor() {
+						this.currentStep = 1;
+						this.formData = {};
+						this.init();
+					}
+
+					init() {
+						this.populateCountryLists();
+						this.setupEventListeners();
+						this.updateProgress();
+					}
+
+					populateCountryLists() {
+						const countrySelects = ['country', 'preferred-country'];
+						countrySelects.forEach(selectId => {
+							const select = document.getElementById(selectId);
+							if (select) {
+								CONFIG.countries.forEach(country => {
+									const option = document.createElement('option');
+									option.value = country.value;
+									option.textContent = country.label;
+									select.appendChild(option);
+								});
+								if (selectId === 'preferred-country') {
+									const noPreferenceOption = document.createElement('option');
+									noPreferenceOption.value = 'no-preference';
+									noPreferenceOption.textContent = 'No Specific Preference';
+									select.appendChild(noPreferenceOption);
+								}
+							}
+						});
+					}
+
+					setupEventListeners() {
+						// Navigation buttons
+						document.getElementById('next-btn').addEventListener('click', () => this.nextStep());
+						document.getElementById('prev-btn').addEventListener('click', () => this.prevStep());
+						document.getElementById('submit-btn').addEventListener('click', (e) => this.submitForm(e));
+
+						// Password visibility toggles
+						document.getElementById('password-toggle').addEventListener('click', () => this.togglePasswordVisibility('password'));
+						document.getElementById('confirm-password-toggle').addEventListener('click', () => this.togglePasswordVisibility('confirm-password'));
+
+						// Real-time validation
+						this.setupRealTimeValidation();
+					}
+
+					setupRealTimeValidation() {
+						// Password strength
+						document.getElementById('password').addEventListener('input', (e) => {
+							this.validatePassword(e.target.value);
+						});
+
+						// Password confirmation
+						document.getElementById('confirm-password').addEventListener('input', (e) => {
+							this.validatePasswordConfirmation(e.target.value);
+						});
+
+						// Email validation
+						document.getElementById('email').addEventListener('blur', (e) => {
+							this.validateEmail(e.target.value);
+						});
+
+						// Real-time email validation on input
+						document.getElementById('email').addEventListener('input', (e) => {
+							this.validateEmail(e.target.value);
+						});
+					}
+
+					togglePasswordVisibility(fieldId) {
+						const passwordField = document.getElementById(fieldId);
+						const toggleButton = document.getElementById(`${fieldId}-toggle`);
+						
+						if (passwordField.type === 'password') {
+							passwordField.type = 'text';
+							toggleButton.textContent = '🙈';
+							toggleButton.setAttribute('aria-label', 'Hide password');
+						} else {
+							passwordField.type = 'password';
+							toggleButton.textContent = '👁️';
+							toggleButton.setAttribute('aria-label', 'Show password');
+						}
+					}
+
+					validatePassword(password) {
+						const strengthElement = document.getElementById('password-strength');
+						const passwordField = document.getElementById('password');
+						
+						let strength = 'weak';
+						let message = 'Password is weak';
+						
+						if (password.length >= 8) {
+							if (password.match(/[A-Z]/) && password.match(/[0-9]/) && password.match(/[^A-Za-z0-9]/)) {
+								strength = 'strong';
+								message = 'Password is strong';
+							} else if (password.match(/[A-Z]/) || password.match(/[0-9]/)) {
+								strength = 'medium';
+								message = 'Password is medium strength';
+							}
+						}
+						
+						strengthElement.textContent = message;
+						strengthElement.className = `password-strength strength-${strength}`;
+						passwordField.style.borderColor = strength === 'weak' ? '#ff6b6b' : '#51cf66';
+					}
+
+					validatePasswordConfirmation(confirmPassword) {
+						const password = document.getElementById('password').value;
+						const confirmField = document.getElementById('confirm-password');
+						
+						if (confirmPassword && password !== confirmPassword) {
+							this.showError('confirm-password', 'Passwords do not match');
+							confirmField.style.borderColor = '#ff6b6b';
+						} else if (confirmPassword && password === confirmPassword) {
+							this.hideError('confirm-password');
+							confirmField.style.borderColor = '#51cf66';
+						} else {
+							this.hideError('confirm-password');
+							confirmField.style.borderColor = '';
+						}
+					}
+
+					validateEmail(email) {
+						const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+						const emailField = document.getElementById('email');
+						
+						if (email && !emailRegex.test(email)) {
+							this.showError('email', 'Please enter a valid email address');
+							emailField.style.borderColor = '#ff6b6b';
+							return false;
+						} else if (email && emailRegex.test(email)) {
+							this.hideError('email');
+							emailField.style.borderColor = '#51cf66';
+							return true;
+						} else {
+							this.hideError('email');
+							emailField.style.borderColor = '';
+							return true;
+						}
+					}
+
+					showError(fieldId, message) {
+						const errorElement = document.getElementById(`${fieldId}-error`);
+						if (errorElement) {
+							errorElement.textContent = message;
+							errorElement.style.display = 'block';
+						}
+					}
+
+					hideError(fieldId) {
+						const errorElement = document.getElementById(`${fieldId}-error`);
+						if (errorElement) {
+							errorElement.style.display = 'none';
+						}
+					}
+
+					validateCurrentStep() {
+						const stepFields = this.getStepFields(this.currentStep);
+						let isValid = true;
+
+						stepFields.forEach(fieldId => {
+							const field = document.getElementById(fieldId);
+							if (field && field.hasAttribute('required')) {
+								if (!field.value.trim()) {
+									this.showError(fieldId, `${this.getFieldLabel(fieldId)} is required`);
+									isValid = false;
+								} else {
+									this.hideError(fieldId);
+								}
+							}
+						});
+
+						// Special validations for step 1
+						if (this.currentStep === 1) {
+							const password = document.getElementById('password').value;
+							const confirmPassword = document.getElementById('confirm-password').value;
+							
+							if (password.length < 8) {
+								this.showError('password', 'Password must be at least 8 characters long');
+								isValid = false;
+							}
+							
+							if (password !== confirmPassword) {
+								this.showError('confirm-password', 'Passwords do not match');
+						isValid = false;
+							}
+						}
+
+						return isValid;
+					}
+
+					getStepFields(step) {
+						const stepFields = {
+							1: ['full-name', 'email', 'password', 'confirm-password'],
+							2: ['program-level', 'field-of-study', 'country'],
+							3: ['preferred-country', 'preferred-program-level'],
+							4: ['terms']
+						};
+						return stepFields[step] || [];
+					}
+
+					getFieldLabel(fieldId) {
+						const labels = {
+							'full-name': 'Full name',
+							'email': 'Email address',
+							'password': 'Password',
+							'confirm-password': 'Password confirmation',
+							'program-level': 'Program level',
+							'field-of-study': 'Field of study',
+							'country': 'Country',
+							'preferred-country': 'Preferred country',
+							'preferred-program-level': 'Preferred program level',
+							'terms': 'Terms and conditions'
+						};
+						return labels[fieldId] || fieldId;
+					}
+
+					nextStep() {
+						if (this.validateCurrentStep()) {
+							this.saveStepData();
+							if (this.currentStep < CONFIG.totalSteps) {
+								this.currentStep++;
+								this.updateStepDisplay();
+								this.updateProgress();
+							}
+						}
+					}
+
+					prevStep() {
+						if (this.currentStep > 1) {
+							this.currentStep--;
+							this.updateStepDisplay();
+							this.updateProgress();
+						}
+					}
+
+					saveStepData() {
+						const stepFields = this.getStepFields(this.currentStep);
+						stepFields.forEach(fieldId => {
+							const field = document.getElementById(fieldId);
+							if (field) {
+								this.formData[fieldId] = field.type === 'checkbox' ? field.checked : field.value;
+							}
+						});
+					}
+
+					updateStepDisplay() {
+						// Hide all steps
+						for (let i = 1; i <= CONFIG.totalSteps; i++) {
+							document.getElementById(`step-${i}`).classList.remove('active');
+						}
+						
+						// Show current step
+						document.getElementById(`step-${this.currentStep}`).classList.add('active');
+						
+						// Update navigation buttons
+						const prevBtn = document.getElementById('prev-btn');
+						const nextBtn = document.getElementById('next-btn');
+						const submitBtn = document.getElementById('submit-btn');
+						
+						prevBtn.style.display = this.currentStep > 1 ? 'block' : 'none';
+						
+						if (this.currentStep === CONFIG.totalSteps) {
+							nextBtn.style.display = 'none';
+							submitBtn.style.display = 'block';
+					} else {
+							nextBtn.style.display = 'block';
+							submitBtn.style.display = 'none';
+						}
+					}
+
+					updateProgress() {
+						const progress = (this.currentStep / CONFIG.totalSteps) * 100;
+						document.getElementById('progress-fill').style.width = `${progress}%`;
+					}
+
+					submitForm(e) {
+						e.preventDefault();
+						
+						if (this.validateCurrentStep()) {
+							this.saveStepData();
+							
+							// Final validation
+							if (!this.formData.terms) {
+								this.showError('terms', 'You must agree to the terms and conditions');
+								return;
+							}
+							
+							// Success
+							alert('Account created successfully! Welcome to ScholarMatch!');
+							console.log('Form submitted successfully:', this.formData);
+							
+							// Here you would typically send the data to your server
+							// fetch('/api/signup', { method: 'POST', body: JSON.stringify(this.formData) })
+						}
+					}
+				}
+
+				// Initialize form when DOM is loaded
+				document.addEventListener('DOMContentLoaded', () => {
+					new FormManager();
+				});
+			</script>
+
+        
+    </body>
+
+
+</html>
