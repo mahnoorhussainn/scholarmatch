@@ -6,7 +6,7 @@ ScholarMatch is a web-based scholarship finder application built to help student
 
 Backend: Python, Django
 
-Database: SQL
+Database: SQL (postges)
 
 Frontend: HTML, CSS
 
